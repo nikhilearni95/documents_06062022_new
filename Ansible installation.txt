@@ -1,0 +1,97 @@
+Youtube video for installation
+
+https://www.youtube.com/watch?v=Km3BCQnV6sw
+
+create 1 master and n number of node instances in aws or any cloud platform
+
+1.Ansible installation
+
+NOTE SECURITY GROUPS SSH,HTTP,HTTPS ALL TRAFFIC OR IP'S
+
+MASTER WORK
+
+$ sudo apt-get update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt update
+$ sudo apt-get install ansible
+
+NODE/SLAVE WORK
+
+$ sudo apt-get update
+$ sudo apt install python3
+
+2.Master connection to slave using ssh
+
+ssh ubuntu(or)root@public ip of node(or)slaves
+
+Ex:ssh ubuntu@13.232.120.156
+
+add to know hosts:yes
+
+permission denied-----
+
+to resolve this,first we need create key
+
+Master
+
+ssh-keygen
+enter
+enter
+enter
+now follow below steps
+
+cd .ssh
+vi id_rsa.pub
+copy text
+
+Slave
+
+cd .ssh
+sudo nano authorized keys
+paste the copied text
+save file
+
+Now try ssh ubuntu@13.232.120.156  (13.232.120.156=node/slave public IP)
+
+we can connect to node/slave from master
+
+3.Ping node/slave from master
+
+Master
+
+sudo nano /etc/ansible/hosts
+now write the following
+
+[production]
+node1 ansible_ssh_host=13.232.120.156
+node2 ansible_ssh_host=12.155.557.449
+
+save file
+
+now ansible -m ping all
+
+success
+ping:pong
+
+ansible -m ping production
+
+success
+ping:pong
+
+ansible -m ping node1
+
+success
+ping:pong
+
+ansible -m ping node2
+
+success
+ping:pong
+
+ansible -m ping node 3
+
+failure 
+unable to find
+since we didnt give in the hosts list
+

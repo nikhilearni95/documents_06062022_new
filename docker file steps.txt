@@ -1,0 +1,40 @@
+https://phoenixnap.com/kb/create-docker-images-with-dockerfile
+
+
+Follow the steps to create a docker file and create a custom image...
+
+====
+
+
+*if installation strucks at timezone values script*
+
+*use apt-get update*
+
+ENV TZ=Asia/Kolkata
+
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt install -y tzdata
+
+*if installation strucks [Y/N] *
+
+add -y in the command line.
+
+EXAMPLE:
+
+FROM ubuntu
+
+RUN apt-get update
+
+ENV TZ=Asia/Dubai
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt install -y tzdata
+
+RUN apt install -y git
+
+ENV name NIKHIL
+
+CMD echo "Hello, $name"

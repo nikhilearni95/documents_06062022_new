@@ -1,0 +1,208 @@
+jenkins
+
+it is continous integaration and continous deployement tool
+
+it is pligin based tool ( for ex: in our mobiles we are downlaoding apps what ever we want according to our use and will configure
+
+as per our needs like watsapp or fb )
+
+in jenkins we will create some jobs it is nothing but flowof work or task
+
+prequisite for jenkins is java
+we can install jenkins in windows and linux?
+
+windows
+
+1 jenkins(file download)
+2 jenkins war 
+
+Linux
+
+jenkins.rpm  ( generally we can install using rpm -ivh jenkins.rpm but we can aslo install using yum install jenkins -y)
+
+jenkns.war 
+
+https://www.jenkins.io/download/ ( for jenkins download)
+
+clink on windows on right side it will automatically download ( dont try lts versions those are used in organisations)
+
+how to install jenkins in linux machines?
+
+before installtion we have to subscribe to redhat
+
+follow these commands
+
+1- To view the server registration status
+# subscription-manager status
+
+2- To register with Redhat License
+# subscription-manager register
+
+3- Subscribe the Server
+# subscription-manager subscribe
+
+4- Attach the License
+# subscription-manager auto-attach
+
+5- Check server registration status
+# subscription-manager status
+
+after follow below methods to install jenkins in redhat
+
+https://www.jenkins.io/download ( in this link u will find centos/debian and ubuntu ..etc so click on what ever linux u want and install commands as follows)
+
+after installtin completes in redhat ( in mycase i took redhat) try to start the jenkins service
+
+#  systemctl start jenkins ( if this cmnd fails to start jenkins install java)
+#  yum install java -y
+
+now start the jenkins service  and test it is running or not
+
+# systemctl status jenkins
+
+#systemctl enable jenkins ( when u stop sever and start jenkins will automaticall stop service and agian we have to start jenkins service so to avoid that us this cmnd )
+
+what is jenkins home directocy in linux?
+
+cd /var/lib/jenkins
+how change password in jenkins dashboard?
+ clink on managae jenkins ...> manage users ...> clik on settings sysmbol....> down u can change password and save it
+
+how t create a job in jenkins?
+
+click on new item on left side so u wll find first option
+
+Enter an item name ( this means it is askig to enter ur job name)
+down u will find some free stle pipe line ..etc these all are called types of jobs so that select free style andclick on ok
+
+now u will go to some page have general ..etc all these options leave all those and click on save
+
+now if u chk in home page u will find s lette ( means status of that job it is built or not) and w ( weather report of last five succesiive builds and unsuccessive builds)
+
+last u will find sysmbol click on that it build the job so that u can find that job is successfully built as tick mark and status as success
+
+we can build same job as many times u want so that u can fins in optin last success time and #2 no of builds #2 means two times i have builded that job.
+
+now click on job name u will find no builds in build history if u want u can build that job again with option build now.
+
+now wantedly fail the job just go to configure and select build optin and select windows execute batch optin and save it.
+
+now build the job it will automaticall fail do some bilds and check weather report u will find sun wit cloud and thunders and raining so all these indicate jobs got failed.
+
+we can check logs also for these jobs so just go to build history and click on tick mark u will find logs and for failed jobs also click on cross symbol u will find logs why it is failed.
+
+to again build code in sample one click on configure ans select build andselect execute shell ( for linux select execute shell for windows select execute batch)
+
+how to create new user in jenkins?
+click on manage jenkins there u willfind manage users in that click on create users , create how many no of users u want no limit for that
+
+what is executor status& build que?
+by default we have two jobs called idle that means if u build 5jobs at atime 2jobs will go to build executor and remaining 3 jobs will be in build que so once one job
+compltes in build executor automatically 3rd job will go from build que to executor.
+
+now lets go to manage jenkins option in dash borad?
+
+here we will have many options
+
+configure system: to conifgure our email notifications and we can change executors count here and  we can know about jenkins home page
+
+global tool configuration: to configue our tools we use this like ex: git , java ..etc
+
+manage plugins: installations snd uninstallations of plugins we use this
+ manage nodesand clouds: 
+
+security
+
+configure global security: wht ever permisions u wana give to users it will be thre in security.
+
+
+
+now we will see each optin detailedly?
+
+
+configure system:   Home directory:  here u will find jenikins path in linux
+
+System mesg: u can provide some mesg there it is optional
+
+# executors: herewe can increase no of executors and build jobs but here jenkins server will hang due to that 
+
+label:
+usage: will see when slaves conceptcomes
+
+quite period: time difference b/w build and build
+
+scm checkout retry count: for ex we have dev and github and jenkisn server. if dev team pushes code to github and in jenkins  if we keep scm chkout number is 2 that means
+for every 2 mins of time jenins will go to github and chk if any new builds if any new code it will build else it wont
+
+
+now go to manage plugins option
+
+here we will find 4 optins
+
+updates  it will show updatesofplugins
+available it will show availale plugins in jenkins
+installed it will show installed plugins
+advanced  : it isnot recomended until if u r expert in any scripting
+
+now lets jump in to security
+
+in configure global security we have option called allow users to sign up if we allow that outside users can sign up and use our jenkins dashboard. so we shld not enable that.
+
+
+in ths security we have two options one is authenticationa and other is authorisation
+
+authentication means where we can create anyusers .etc authorisatio means where we can give access to those created users.
+
+in authorisation if we enable on Any one can do any thing .not only we all users can do any thing in jenkins.so it shld not be enabled.
+
+please do not enable legacy mode it will chnage all admin permissions
+by default logged users can do any thing shldbe enable.
+
+we have 3 types securtiys
+
+matrix based security: giving differnt types of permissions to individualusers is called matrix based security.those users might be any team dev, or testing..etc
+
+
+project based security:  to allocate spedific user to specifi project is called project based.
+
+
+roll based strategy: it just like grps in our aws iam we will create grps and users to this grp and will give permissions to this grp. so that all users in those grps 
+will get those permissions.
+
+role bases strategy plugin we have to install it wnt be available in secuity tab.
+
+now go to security and check in authorisation roll based is aded or not.
+
+when u select matrix based first add admin user and give all permisions to that admin user.now if u want add how many no of users u want u can add and give whatever
+permissions.
+
+in project based as discussed we will give permissions to those particluar jobs/project to that particular user.
+
+in security select project based and give first give admin permissions and then add user and give permission and now go to jons click on job and click on configure option
+and add user and give permissions u want.
+
+As we know roll based startegy is just like our awsiam creating grps and adding users to this grp.
+select role based in secutiy and save it.mow click on manage and assign roles in that click on manage roles and add ur grp names ( test , dev etc) save it.
+
+now click o assighn roles and add users to that grp.
+
+how to restet ur jenkins?
+
+system jekins stop/start
+
+othet waty
+http://52.23.177.114:8080/restart
+
+other options if your jenkins activate (exited) and not working
+
+sudo ufw allow 8080
+
+sudo ufw status
+
+sudo ufw allow OpenSSH
+sudo ufw enable
+/etc/init.d/jenkins restart
+
+
+
+

@@ -1,0 +1,4 @@
+https://marbot.io/blog/monitoring-ec2-disk-usage.html
+
+Follow the steps in above link for keeping a disk space alert for ur 
+ubuntu/centos/amazon linux

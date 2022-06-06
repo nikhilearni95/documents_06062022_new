@@ -1,0 +1,29 @@
+Case - 1
+
+
+Fork Project - https://github.com/ravi2krishna/project.git
+https://github.com/yourname/project.git	
+Dockerfile
+Ansible Playbook
+Jenkinsfile
+Kubernetes files
+	
+Construct Pipeline - Jenkins  
+- With CODE { Jenkinsfile } 
+Prepare all the five steps which was shown in graphical interface using Jenkinsfile
+
+
+Case - 2
+
+Build the project 
+Using “DOCKER”
+When new changes are made in Source Code, jenkins should prepare new build i.e New Docker Image, which should have Tomcat and Newly Updated WAR file
+HINT - Prepare Dockerfile accordingly
+
+Kubernetes Cluster ?
+Prepare Ansible Playbook, for setting up “PRODUCTION” grade kubernetes cluster, with 2 Nodes across two different availability zones
+
+Deploy on Production Cluster - Kubernetes
+When changes happen in source code, jenkins should prepare a new Docker build, which results in a new docker image
+The newly generated docker image should be deployed on Kubernetes cluster, which means you need to prepare an Kubernetes Deployment with 2 replicas
+Using a Service Object i(client) should be able to access the application i.e via Elastic Load Balancer

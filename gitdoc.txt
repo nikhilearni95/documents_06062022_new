@@ -1,0 +1,232 @@
+Git document
+
+if we are using linux use ubuntu or redhat
+
+for ubuntu to install git in ur server
+
+apt update,  apt-get install git   yum
+
+now create a directory in server and jump in to that
+
+mkdir project  , cd project
+
+
+so we have to initilaize that git directory
+
+git init
+
+we have three stages in git 
+
+working dir ( ie ur directory naeme)
+
+stage/cache ( hidden)
+local_repo ( hidden)
+
+we will move files from working dir to local repo to access files
+
+first configure ur git file
+
+we have 3 levels for configuraton
+
+1    system
+     /etc/gitconfig
+        git config --system
+
+2   user
+   ~/.gitconfig
+   git config --global
+
+3 project
+  .git/config
+  git config
+
+in real time we will use user level configuration;
+
+git config --global user.name "krish"
+
+git config --global user.email "xxxx@gmail.com"
+
+git config --global core.editor "vi"
+
+git config --global color.ui true  ( just to know phases color in which phase u r this optinoal)
+
+to list what configurations u have done
+
+git config --list
+
+to check status of ur files
+git status
+now create one file in side  that directry and do git satus we will find it as in red color so that means it is woring dir
+
+now we have to move that file to stage/cache directort
+
+git add <filename>
+
+now check git  status u will find in green color
+
+now w ehave commit the file it will go to local repo so that we will know what chnages done we will write thre
+
+git commit -m "this is index file"
+
+to check commited file
+git log ( we will get some commit number commit a4242b686fe812dabfd22a31f0bf2ac80b09a94d this are versions number
+
+to show ur commited messgae in git 
+
+git show  a4242b686fe812dabfd22a31f0bf2ac80b09a94d  ( u will see ur file content what u have saved)
+
+for ex: root@ip-172-31-2-34:~/project# git show a4242b686fe812dabfd22a31f0bf2ac80b09a94d                                                                                        commit a4242b686fe812dabfd22a31f0bf2ac80b09a94d (HEAD -> master)
+Author: sai <saivenkat1211@gmail.com>
+Date:   Tue Feb 9 13:05:14 2021 +0000
+
+    this is index file
+
+diff --git a/index b/index
+new file mode 100644
+index 0000000..537e61e
+--- /dev/null
++++ b/index
+@@ -0,0 +1 @@
++hi this is test file
+
+
+to  add multiple files at a time in git first create some emplty files
+
+touch s1 s2 s3 s4 
+
+to add these files ata atime use cmnd ( git add .) so that it will add all files at a time
+
+git commit -m " thse are my new files"
+
+git wont dtect empty directories
+
+to check full commit in single line
+git log --oneline ( it will show all commites in single line)
+git log --until-2020-10-02 ( this will show files until this date)
+git log --since-2017 -10-02 ( this will show since files from that date)
+git log --author="sai" ( this wil show author related files)
+git log --grep ="s1" ( this will show what has modifiled to that file)
+git diff a4242b6 b4b9fe9 ( this will show diff b/w commits)
+=========================================================================================================================
+what are branches?
+it is collection of commits
+
+we will have master branch in that we ont do any work 
+
+master           project1 ( this                    project2(another project)
+index +extra     index+extra+additional       c, php
+
+so here we will write code in thse projects and finaly push or merge to master branch
+
+when ever u create branch what ever master have existing content that will come to newly crared branch
+
+git branch ( it will show current branches)
+
+how to create new branch
+
+git branch <new branch name>
+
+git branch <f1>
+to move from one branch to other branch ( git checkout <branch name>)
+
+to create branch and checkout to that branch in one line?
+
+git checkout -b <new branch name>
+now if u see content what ever master have newly created branches also will have same comtent
+
+to see diff between branches 
+
+git diff f1 f2
+
+how to merge two branches?
+
+in what ever brach u wana merger u shld be in that  branch and merger
+
+for ex: i wana merge my f1 to master branch so u have to be in master brch
+
+cmnd: git merge f1
+
+if u wana delete any branch 
+
+git branch -d f1 ( u shld ne in other brach and delete this branch)
+
+git branch -D f1 ( this is force full deletiuon)
+
+=======================================================
+git rm and git mv
+
+how to add and commiot a file or dir in single step?
+
+git commit -am <"commit name">
+
+this is for existing files only
+
+how to delete a file?
+rm <filename>
+how to get back deleted file?
+git checkout <filename>
+
+how to delete a file pemanently in all three phases?
+
+git rm <filename>
+as we know mv is used for renaming and for moving be attentive while using thsi command
+
+Hw to erase history?
+git reset --soft <commit num> this will delete files in local repo
+git reset --mixed <commit num> this will delete in both local and stage
+git reset --hard <commit num> this will delete in all phases
+
+what is stash?
+
+stash is temporary area under git
+
+why stash?
+
+to store temporary files
+
+how we use stash?
+
+what are the conditions to store the files in to stash area?
+
+the files must be in stage/cache area
+
+what are commands to store the data in stash?
+
+git stash save <"message">
+how to see stash list?
+git stash list
+what are commands use to copy data in to branches?
+git stash apply <stash#> ..copy and paste to branches wat particluar branch u want
+git stash pop  <stash#> ..cut and paste same as above
+===========================================================================================================
+git server
+
+internet service ( to connect to ur server if it is out of ur ofice) ex: git hub
+
+intranet service ( connect to ur server with in ur office)
+
+git bucket is a private git server
+
+pre requisites:
+
+java
+
+sudo apt-get install java-1.8.0-openjdk or follow this link (https://phoenixnap.com/kb/how-to-install-java-ubuntu) sudo yum -y install java-1.8.0-openjdk
+
+after installing java check java version
+
+https://github.com/gitbucket/gitbucket/releases ( login to this link u will find gitbucket.war file copy link address)
+
+create one directory ( mkdir git) 
+
+wget (paste the link address) gitbucket will download
+
+to install git bucket in ur linux
+
+java -jar gitbucket.war ( it will defaultly run on port no 8080)
+
+git token
+
+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
+
+

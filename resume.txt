@@ -1,0 +1,48 @@
+AWS Certified DevOps Engineer with experience in Supporting Infrastructure (AWS, Linux, Windows), DevOps (Build & Release Management) with strong background on web applications, middleware, and databases. 
+
+
+
+PROFESSIONAL SUMMARY
+
+Experienced in creating, configuring and maintaining Infrastructure on AWS Cloud services including Virtual Private Cloud (VPC), EC2, RDS, S3, Route53, SNS, CloudFront, CloudWatch and IAM.
+Experienced in migrating servers from data center to Amazon Web Services cloud
+Experienced in creating various dashboards, metrics, alarms and notifications for servers using AWS Cloud Watch, Grafana, Prometheus and Nagios.
+Experienced in creating complex IAM policies, Roles and user management for delegated access within AWS.
+Experienced in creating complex caching and routing policies with content delivery network (CDN) using Akamai/CloudFront to improve the page speed and TTFB values.
+Hands-on experience with databases (MySQL, MongoDB, MSSQL) creating users, performing dump/restore and taking automated snapshots.
+Experience working with version control systems like Subversion, GIT and used Source code management tools GitHub, GitLab, Bitbucket including command line applications.
+Implemented a CI/CD pipeline involving BitBucket, Jenkins, Chef, Docker, and Selenium for complete automation from commit to deployment.
+Installed and configured Chef Enterprise and Chef Workstation hosted as well as On-Premise; Bootstrapped Nodes; Wrote Recipes, Cookbooks and uploaded them to Chef-server.
+Experienced in Bug/Issue tracking tool like Bugzilla, JIRA, FreshService.
+Knowledge of Software Development Life Cycle Methodologies Waterfall, and Agile.
+Experienced in multi platforms like UNIX, Ubuntu, RHEL and Windows 98/XP/Vista/7/8/10 supporting production, test, and development environments.
+Strong work ethic with good Interpersonal and Organizational skills.
+Ability to work under minimal supervision and guidance
+
+
+TECHNICAL SKILLS
+
+DevOps Tools: Jenkins, Maven, Artifactory, Docker, Chef, Kubernetes, Akamai
+Version Control: Subversion, Git
+Source Control Management Tools: Gitlab, GitHub, GitBash, Bitbucket
+Bug Tracking Tools: Jira, Bugzilla, FreshService
+Cloud Platforms: Amazon Web Services
+Monitoring Tools: AWS Cloud watch, Nagios, Grafana, Kibana, NewRelic
+Collaboration Tools: Hip chat, Confluence, Slack, Stride, Hangouts, Skype
+Security Tools: Evident, ShieldSquare, SiteLock, CloudHealth, ModSec
+SDLC: Agile, Waterfall
+Tools: Visio, MS Office, Excel, PPT, Office 365, Lucid chart, Open Source Applicant tracking System
+Languages: HTML5, CSS3, C/C++
+Operating Systems: Linux, RHEL, Ubuntu, Mac OS X, Windows 98/XP/7/Vista/8/10
+
+
+CERTIFICATIONS & TRAINING
+
+AWS Certified DevOps Engineer - Professional  
+AWS Certified Developer - Associate
+
+
+EDUCATION
+
+Master's in Computer Science - Texas A&M University, Commerce, Texas, USA 
+Bachelor's in Computer Sciences - Anna University, Chennai, INDIA 

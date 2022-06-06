@@ -1,0 +1,305 @@
+Docker:
+ how to install docker in centos8/redhat8
+
+follow thislink
+htthttps://www.linuxtechi.com/install-docker-ce-centos-8-rhel-8/
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04 
+
+after installation of docker we can exceute some comands to chek whether is working fine or not
+
+docker images ( to check images)
+
+docker ps ( to check any containers running)
+
+how to pull image in to docker ?
+for that just login to dockerhub.com or hub.docker.com
+
+signup the page there dicker id means any name u can give
+
+select free option and search for images in that site
+
+if u search for hello-world image u will find many images for thre u can copy and paste in server
+
+ex: docker pull hello-world 
+else if u want to search in server with that helolo world image
+
+docker search hello-world
+u will find all star ratings images from that also u can slect
+
+now ifu want to pull that image to ur server/machine just do
+
+docker pull hello-world
+now if u check docker images u will fimd all deatils
+how to rrun a container?
+docker run -itd -p 81:80 hell0-world
+now check docker ps ( u will find conatiner info)
+
+to chec k whethrt it is running in web 
+ur ip adrress :81 ( in my case port is 81)
+to stop container
+docker stop containerid     ( docker stop 65190bed0dad and to start docker start 65190bed0dad)
+
+to check stopped container or all conatiners list 
+docker ps -a
+to download linux images 
+docker pull centos
+
+docker run -it centos ( we will jump in to container) 
+now tpe hostname u will see container id
+now from container if u wnat to come out type exit and check docker ps -a u will find cotainer is stopped and exited but fron that container only if u type
+ctrl pq  ( u will exited from that container and now if u check docker ps -a it will keep on running)
+if u want to install any pkg in contaier move to that conatiner and install
+
+i wana install git ( yum install git -y)
+yum install wget
+to jump in to running container
+docker attach <containerid>
+can we connect to stopped conatiners?
+no we cannot we have to start conatiner and sand then connect
+
+now if u want to download any image u will dowload in to machines and run it
+for ex: if u don't have ubuntu image in ur machine but if u run this command 
+(docker run -it ubuntu) it will connect to dockerhub and check with this name sny latest images if it is tere it will downlaod
+
+now u can install whaht evr pkg u want in ubuntu like git
+
+to jump in to running container we can use this commanda also
+
+docker exec -it <cont id> </bin/bash>
+
+docker exec -it 2jj3j4j /bin bash ( for ex) this will take u to conatiner now if u do exit from this container u will container keep on running
+how to remove a conatiner from ur machine?
+docker rm <contid>
+how to remove running conatiner ?
+generaly we can't remove running container but if u want to remove u have to use force option
+docker rm -f <containid>
+to list only conayiner id's
+docker ps -aq
+how to delete images from ur machine
+docker rmi <imageid>
+i want to create container but i should not enter in to that it shls be back on running
+docker run -itd centos
+
+how to create a image from existing conatiner?
+if we create like this all info like pkgs everthing in the old cont will automatically move to that image from image we can create new container
+
+docker commit <conrid>
+
+if u want to create any tagname for ur images
+docker tag 5d7dcab789ff<imageid> "testimg"<tagname>
+
+how to push image from ur machine to dokcer hub?
+go to dockerhub and click on repositries and create new repo add details and create
+
+must and shld imagname and repo name shld be same to push our image to dickerhub
+docker tag 5d7dcab789ff krishkal/testimg
+now u will see duplicate image u can delete  that duplicate image
+docker rmi <imagname>
+now login to docker hub from ur machine usig this commanf
+docker login ( give creds)
+now to push in to dockerhub repo
+docker push krishkal/testimg
+u will find in dockerhub.com ur project
+
+
+Docker volume:
+
+how do you transfer files from container to host machine in docker?
+
+$ docker cp (container_id):/(files from which place to copy) /hostfile  
+
+how do you transfer files from host machine to cotainer in docker?
+
+$ docker cp /hostfile  (container_id):/(to_the_place_you_want_the_file_to_be) or
+
+docker run -itd -v path:path imagename
+
+ex: docker run -itd -v /opt/sai:/opt centos
+
+we can also check files by deleting from host machine and from container if we delete in host machine it will be automatically deleted from conainer as it is shared drive
+how to transfer dat from host machine to existing container?
+docker run -it -v /opt/seetha/:/opt/ f63181f19b2f
+
+how to share data between container to container?
+docker run -itd --volumes-from d018f1ab0ad1 centos ( it will create new container and pull data from old to new cid)
+
+how to build a image on your own not from docker hub?
+just go to any path in host machine
+cd /opt thre create one directory and then create one filename in that dir
+touch Dockerfile ( file name shld be Dockerfile only)
+vi Dockerfile
+FROM ubuntu (which image u want to run)
+MAINTAINER krishna
+RUN apt-get update -y
+RUN mkdir /opt/venkat
+now save it
+docker build -t "testimgfile:ubuntu" . ( in my case testimgfile that image name and ubuntu is tage name)
+
+
+Docker commands:
+
+docker info ( it displays information like how many cinatiner and images all etc)
+
+if u want to know particular container details
+docker inspect <contid>
+
+how to check container logs?
+
+docker logs <contid>
+to check images history?
+
+docker history <imagename>
+
+how to kill contid?
+
+docker kill <contid> both kill or stop are same
+
+docker ps -l ( it shows latest container information)
+
+docker restart <contid> ( it will restart ur container)
+
+docker pause <contid> ( cont will be paused that means it will be running only but wecan't connect to that container)
+
+docker unpause <contid> ( it will unpause cont>
+
+how to rename container name?
+
+docker rename <existingname> <newname>
+
+how to change name while creating container only?
+
+docker run -itd --name seesai ubuntu  ( in my case sesai is my container name and ubuntu is new container)
+
+how to pull and run web server in docker?
+
+docker pull nginx
+docker run -itd --name testnginx -p 82:80 nginx ( in my case i named it as testnginx and 80 is default port number and 82 is my port number which i set it)
+
+docker stats <contid> ( it showslike top comnd)
+
+how to create network in docker?
+
+open one dupliucate section and pull wordpress images
+
+docker pull wordpress
+docker pull mysql:5.7
+dokcer network list ( it will show default n/w's)
+docker inspect networkid ( it will display full info about that network)
+
+docker network create --subnet 10.1.0.0/16 --gateway 10.1.0.1 --ip-range 10.1.5.0/24 --driver bridge --label test-network bridge1 ( in my case bridge1 is my n/w name)
+
+docker rm -f $(docker ps -aq) ( this will remove all containers rnning or stopped)
+
+docker run -it --net bridge1 centos ( in y case i'm running container in my own network) ( in this case if u don't provide ur networkname it will create in default n/w)
+now check hostname -i ( u will find ip range of that container)
+
+
+docker network rm b48ff4261ebc ( it will remove netowork)
+
+Docker link?
+
+how do you link webapplication container and mqsql container ? ( this is senario question)
+
+for that we have download any webapp and datebase  ( in my case i have downloaded wordpress and mqsql:5.7)
+
+ docker run -itd -p 83:80 wordpress
+
+docker run -itd --name mydb -e MYSQL_ROOT_PASSWORD=12345 mysql:5.7
+
+docker run -itd --name wp -p 82:80 --link mydb:mqsql wordpress
+
+my troubleshoot
+
+creating container 
+
+docker run -d --name tomcat-container -p 8081:8080 tomcat
+
+jump into container
+
+docker exec -it tomcat-container /bin/bash
+
+copy files
+
+cp -R * ../webapps
+
+create docker file
+
+FROM tomcat:latest
+RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
+
+how to integrate docker to jenkins?
+
+first you have to check the groups in your instance for that enter below one
+
+cat /etc/group
+
+and then you find a group called docker
+
+now we have to create a user and add him to the docker group
+for that please follow below steps
+
+useradd dockeradmin
+passwd dockeradmin
+
+adding dockeradmin to docker group
+
+usermod -aG docker dockeradmin
+
+login to dockeradimn
+
+open duplicate session
+
+it is not allowed password based authentication for that you have to change the password authentication
+
+follow below methods
+
+vi /etc/ssh/sshd_config
+in this search for passwords
+/Password
+
+now you have to uncomment password authentiocation:yes
+and comment password authentication:no
+
+and save it :wq!
+
+now you have open duplicate sesssion and login as dockeradmin and enter your password
+
+now come to your jenkins server and install plugin called publish over ssh
+
+and click on system configuration scroll down to bottom and  you will find publish over SSH
+
+and click on add
+and enter name
+	hostname : privateip address
+	username :
+click on advanced and enter password
+and run test configuration
+and save.
+now your dockeradmin integrated to jenkins.
+
+give files or directories permissions to the dockeradmin
+
+chown -R dockeradmin:dockeradmin docker
+
+login to container image using ip address
+https://github.com/docker/for-win/issues/221
+
+
+
+
+docker system prune--images and container gone will be deleted
+
+docker images prune---images will be deleted
+
+docker stop $(docker ps -a -q)--all container stop
+
+docker rm -f $(docker ps -aq)--all containers delete
+
+
+*******************JENKINS INTEGRATION WITH DOCKER***************
+
+sudo usermod -a -G docker jenkins
+
+reboot
+
+then in pipeline, docker commands work like building images and running containers

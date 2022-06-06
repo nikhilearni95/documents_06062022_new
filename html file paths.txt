@@ -1,0 +1,5 @@
+/usr/share/nginx/html
+
+/var/www/html/
+
+/usr/share/apache2/htdocs

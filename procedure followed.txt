@@ -1,0 +1,47 @@
+1.I created a EC2 instances using AWS for running this jenkins and deployment.
+
+2.logged in using putty as root user.
+
+3.created .sh files for building infra git,maven,jenkins,docker,tomcat.
+
+4.configuring jenkins
+port:8080
+username:admin
+password:admin
+jenkins URL:52.91.91.164:8080
+
+installed suggested plugins
+
+installed docker plugins
+
+5.configured tomcat
+
+added user credentials
+
+Port:9090
+username:maven-deploy-war
+password:warfile
+tomcat URL:3.80.105.218:9090
+
+6.forked git repository provided.
+
+7.Added pom.xml file
+
+8.Added src/ folder with web.xml file.
+
+9.Added index.html file from provided git repository to src/ and changed file extension to index.jsp
+
+10.Now logged into jenkins and created jobs pulling code from git repository.
+
+11.Jobs sheduled in such a way that whenever a new commit is made to git repository,pipeline starts building jobs.
+
+12.Pipeline deploys .war file into tomcat application server running on above mentioned URL
+
+13.Created 5th job to clone git repository into jenkins workspace library /var/lib/jenkins/workspace/
+
+14.Written Dockerfile to create docker image and placed in git repository in the following path /httpbin/httpbin/templates/flasgger/
+
+15.Now created 6th job to use docker file from git repository cloned and create docker image.
+
+
+

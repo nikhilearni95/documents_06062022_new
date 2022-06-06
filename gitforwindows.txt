@@ -1,0 +1,227 @@
+if we are using git onn windows ?
+https://git-scm.com/downloads ( use this link)
+
+go to any drive create one directory
+
+ex: venkatgit is my directory name. move in to that venkatgit folder right click open git bash  here so that ur information 
+will be saved here.
+
+try this command
+git status
+$ git status
+fatal: not a git repository (or any of the parent directories): .git 
+
+first we have initailize git repository.
+# git init
+Initialized empty Git repository in D:/venkatgit/.git/  ( it will give .git directory hidden directory, go to ur folder created in drive and check thre that .git hidden directory is there or not.
+
+if u don't find hidden directory just click on view u will find hiddenitems option enable that.
+
+now# git status
+
+now we have to config our details in git
+
+git config --global user.name "krish"
+
+git config --global user.email "xxxx@gmail.com"
+
+to list what configurations u have done
+
+git config --list
+
+if we want to change user name use same command
+git config --global user.name "sai"
+it will replace with new user name
+it wont create other user name only one machine will have one user name aond one mail id only.
+
+we have three stages in git 
+
+working dir ( ie ur directory name)  
+
+stage/cache ( hidden)  
+local_repo ( hidden)  ( if we want to push files to central repo those files shld be in local repo only)
+
+
+when u install git we will have 3 phases default
+
+workspace
+stage/index
+local repository
+
+when we create a code first we will push to workspace area and tghen stage area and local repo and finally from local repo to central repo we will push.
+
+we can't push from workspace to central repo.
+
+work space is nothing but when we create a new file it will defaulty stored in work space ares
+
+staging means for what pupose u are pushing that file to local repom so it will store ur authore name email all these in stagimg
+local repo means if u want to push into the centarl repo ( git hub, bit bucket) then we can use local repo.
+
+
+sign up in github.com
+
+
+now create one file in side  that directry and do git satus we will find it as in red color so that means it is woring dir
+#touch file1
+now we have to add that file to stage/cache directort
+
+#git add <filename>
+
+now check (git status) u will find in green color
+
+now w ehave commit the file it will go to local repo so that we will know what chnages done we will write thre
+
+#git commit -m "this is index file"
+
+to check ur file in local repo
+
+#git log ( it will create some commit id)
+#git show <commit id>
+
+
+
+to  add multiple files at a time in git first create some emplty files
+
+touch s1 s2 s3 s4 
+
+to add these files ata atime use cmnd ( git add .) so that it will add all files at a time
+git commit -m " thse are my new files"
+
+to commit particular files in those we will same same command (git commit -m "this is index file" <filename>)
+
+only one commitid will be created for all thse files
+now go to ur folder were u created in system there edit one file and save that file
+now check git status u will find f1 is modified ( by default creatd files or modifiled files will be stored work space)
+
+only modified files can be moved from work space to localrepo
+ex: git commit -m "s1 is modied" s1 ( here i ahve modified s1 file) s1 is my file name
+now check git show <commitid> u will find previos data and modified data.
+
+for example if u added file to staging area unexpectedly from that we have to add again that file to workspace area we can use this comamnd
+
+# git reset HEAD <filename>
+
+if u want to to for multiples files u can use this command
+# git reset HEAD *
+
+if we want to bring back our data from local repo to staging area
+# git reset --soft <commitid> ( here commit id means which file u want bring back that file's below commit id we have to use from local repo that id we have to give)
+ex:
+commit 14474f37d83da109ae2dacbe673764e6c34f18f5
+Author: minnie <venkatnaidu15@yahoo.com>
+Date:   Thu Apr 15 17:02:46 2021 -0700
+
+    s1 file
+
+commit aebde4a649824f57b9cdd7ad16c5f050e4e08aeb
+Author: minnie <venkatnaidu15@yahoo.com>
+Date:   Thu Apr 15 16:02:49 2021 -0700
+
+    sample file2
+here if i wana get s1 file from local to staging area we have to use file2 commit id 
+
+if we wana get files from loccal repo to work space directly
+
+# git reset --mixed <cid> ( here aslo we have to below commit id but here when u r bringing back files from local to working area if anu files are there in staging area also it will come back to working area)
+
+how to add and commit a file or dir in single step?
+
+git commit -am <"commit name"> (only for modified files or existing files)
+===========================================================================================================================
+
+sing into ur github
+
+create one new  repository 
+
+seetha2115/devopsmbatch ( in my case devopsmbatch is my repository name)
+now we have to clone our central repo to our local machine to do our work , no need of intializing git bcoz when un create repositoy in github it will automatically initilalize it. when u want to practice in
+local repo only u need to initialize git)
+
+now clone central repo to our local machine u will find directory created with our reponame
+
+git clone https://github.com/seetha2115/devopsmbatch.git
+
+now type ls u will find directory created (devopsmbatch)
+chnage to that directoty
+cd devopsmbatch
+now check ls -a u will find .git files
+
+now create one file and add to working area and then staging and to local repo from localrepo to github
+
+touch sai
+git add .
+git commit -m "sai is my file" <filename>
+now we have to push the file to central repo
+git push ( i will open one window give ur creds for first time)
+
+it will automatcicall push from local repo to central repo
+
+how to push ur files to my git hub?
+
+git clone https://github.com/seetha2115/devopsmbatch.git
+
+cd devopsmbatch.git
+touch yourname
+add and commit it and try to push it from ur machine u will find error
+so i have to give collabration access to ur mail id
+git pull --rebase ( to pull files from central repo to local repo we use this comand) 
+git wont dtect empty directories
+
+to check full commit in single line
+git log --oneline ( it will show all commites in single line)
+git log --until-2020-10-02 ( this will show files until this date) or git log --before=yy-mm=dd
+git log --since-2017 -10-02 ( this will show since files from that date) or git log --after=yy-mm-dd
+git log --since=yy-mm-dd --until=yy-mm-dd ( this will show in between logs) git log --after=yy-mm-dd --before=yy-mm=dd
+git log --after="yy-mm-dd hh:mm" --"before=yy-mm-dd hh:mm" ( this will logs from particlular time to time)
+git log --author="sai" ( this wil show author related files)
+git log --grep ="s1" ( this will show what has modifiled to that file)
+git diff a4242b6 b4b9fe9 ( this will show diff b/w commits)
+git log -n (in palce of n give no what u want it will dislplay that no of logs)
+git log -- filename ( git log -- sai it will display all commits under this file)
+git log --grep="label" ( based on label mesg it will display commits)
+
+
+
+what is revert in git?
+
+take any existing  file in ur local repo  and write some content in the file and save ans commit. now push in to central repo using git push. now bcoz of that file some issues were coming so u need to revert the file.
+
+check git log else git log -5 ( u will see last 5 commits)
+
+revert thr file in to original position like this
+
+git revert <commitid>  ( it will redirect to vi editor there just save the file ( esc :wq!) now check file came to original position or not.again push to central repo if u don't push to cental repo chnages what had been done in local repo can't see there
+
+
+just imagine issues were not with file i pushed u will come to know so again u need to revert the file ( that means what changes u have made earler has to be again same it shld be)
+
+now type git log -2
+u will finf two commit id's
+
+
+ex: for reference
+
+
+$ git log -2
+commit 2ea5ad612844cb4bc797251bff6d774e895a8103 (HEAD -> main, origin/main, origin/HEAD)
+Author: venkat <saivenkat1211@gmail.com>
+Date:   Fri Apr 23 16:16:59 2021 -0700
+
+    Revert "yani added"
+
+    This reverts commit 38935439d0a77661a6466d3d841f0288cde4d151.  ( this id is for reverting what we did earler)
+
+commit 38935439d0a77661a6466d3d841f0288cde4d151
+Author: venkat <saivenkat1211@gmail.com>
+Date:   Fri Apr 23 16:14:40 2021 -0700
+
+    yani added
+our intention is what ever changes u have made to that file earlier it shld come back.
+
+git revert 2ea5ad612844cb4bc797251bff6d774e895a8103   ( we have to use first commit id so that it will redirect to vi editor and save the file and push to cental repo)
+
+
+
+=============
+conflicts
+ 

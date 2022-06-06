@@ -1,0 +1,191 @@
+Ansible:
+
+it is one of the configuration management tool to manage the entire infrastructure level we use.
+
+Architecture:
+
+in ansible we have 2 components
+
+Ansible server
+Ansible nodes
+
+there will be no workstation in asible like chef we implement everything in ansible server.
+
+in ansible we write in yml language thos were stored with name called playbooks.
+
+we execute play books in ansible server those will connect to node servers.
+
+Ansible is called agentless configuration tool
+
+
+it works on ssh no need of ansibe agent
+
+
+now go to aws console and launch two ubuntu/red instances with same configuration
+
+one insantce name it as master other instance name it as Node. 
+
+now login to master server go this path 
+
+vi /etc/hosts
+
+copy node private ip address and paste in above path   (  172.31.21.28   node1.local node1)  node.local just .com ie fqdn ( fullu qualified domain name)
+
+now check with command (  ping node1) the network connections will flow.
+
+but here we have to login like these using ssh
+
+#ssh root@node1 ( if u use this command u will defineltly get error)
+
+so we have to set password less authentication  to connect from master to node server
+
+now in master server type these commands
+
+ # ssh-keygen ( type this comnd and click on eneter  and eneter and enter it will generate one key)
+
+now type cmnd
+
+# ls -al ( u will find hidden files and nornal files and directories in that u will find .SSH directory)
+
+# cd .ssh
+# ls -al
+u will find some keys named as
+
+id_rsa and id_ras.pub those are public and private keys
+
+# cat id_rsa.pub   ( u will find public key copy that entire lines in master serever u will find file name called authorised keys)
+
+# vi authorised keys
+paste the public key in that authorised keys file .
+
+Now go to node servr
+
+# ls -al  cd .ssh ( u will find authorised key file)
+
+paste same public key file copied from master server in this node server in authorised key file.
+
+Now go to master server check with command r u able to login from mastr to node server or not with the command
+
+#  ssh root@node1  
+
+must and should python3 must be installed in servers
+
+check with command # python3 --version  if u find python leave it else install with command # apt install python3
+
+go to this link and install ansible in ur master server
+
+https://docs.ansible.com/ansible/2.3/intro_installation.html#latest-releases-via-apt-ubuntu  or follow below commands
+
+https://www.youtube.com/watch?v=Km3BCQnV6sw-ANSIBLE INSTALLATION VIDEO
+
+MASTER WORK
+$ sudo apt-get update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt update
+$ sudo apt-get install ansible
+
+NODE/SLAVE WORK
+
+$ sudo apt-get update
+$ sudo apt install python
+
+once done check with command
+
+#  ansible --version
+
+now go to this locations and do some modifications
+
+# vi /etc/ansible/hosts
+
+add node private ip address and master as localhost
+
+ # vi /etc/ansible/ansible.cfg
+
+find the line  ( host_key_checking) that will be true make it as false and remove # mark
+
+Find the line ( deprecation _warnings) this will be true make it as false and remove # mark
+
+now save file 
+
+now we shld create inventory files and we shld write which servrs u r mnanaging
+
+vi ans_hosts
+
+[allservers]
+localhost
+node1
+
+[clients]
+node1
+
+now save the file and check with command is our master server is connecting to node servers
+
+# ansible -i ans_hosts all -m ping
+
+how to check free space or uptime or some others usind ansible adhoc commands?
+
+ansible -i ans_hosts node1 -a "free -h"   (  ans_host means where u kept ur node servers list node1 means to which servr u r finding free space and the last fre -m or h is command)
+
+How to write a playbook in ansible? open file with what ever name u want for ex play1.yml
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Installing git package
+    apt: name=git state=latest
+
+:wq!
+
+ansible-playbook play.yml
+
+with below commads u can check how playbook is running before executing it
+
+ansible-playbook play1.yml -i ans_hosts --syntax-check   ( this will check playbook syntax if any issue in pb it will show)
+   60  ansible-playbook play1.yml -i ans_hosts --check  
+   61  ansible-playbook play1.yml -i ans_hosts --list-hosts
+   62  ansible-playbook play1.yml -i ans_hosts --check -v
+   63  ansible-playbook play1.yml -i ans_hosts --v
+   64  ansible-playbook play1.yml -i ans_hosts --all
+   65  ansible-playbook play1.yml -i ans_hosts ( this is for installation)
+
+
+
+How to write playbook for installing apachewebserver?
+
+---
+- hosts: all
+  become: yes
+  tasks: 
+  - name: install apache webserver
+    apt: name=apache2 state=latest
+
+
+How to copy files from master to node?
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: To copy file names testfile to node
+    copy:
+      src: /root/testfile
+      dest: /root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

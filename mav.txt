@@ -1,0 +1,160 @@
+﻿MAVEN
+ 
+how to install java and maven in windows
+
+Prequistes:
+
+JAVA
+
+How to install java on windows
+
+in google type java8 download
+
+we will find this link
+
+Java SE Development Kit 8 - Downloads | Oracle India  ( click on this link) u will redirect to oracle page
+
+depends up on os u use select java to dowload  in my case i havae downloaded this
+
+Windows x64	168.67 MB	
+jdk-8u291-windows-x64.exe
+
+download and install java in system as in default location
+
+once u install the java in system go to C: directory ..> program files...> java...> there u will two files jdk and jre we have to click on jdk and copy the path
+
+this selecte path should be pasted in envronment variables
+
+Now set up env variables:
+
+click on start ....> type environment variables ...> select optin advanced ...>Environment variables
+
+here we have two options user variables on top and system variables on bottom 
+
+fist click on user variables and the click on new u will get two options
+
+variable name : JAVA_HOME
+
+Variable value : paste the java path u have selected
+
+In system variables we have some options down in that select PATH and then click on edit u will find option new paste the selected java path and \bin extension should
+give
+
+C:\Program Files\Java\jdk1.8.0_291\bin
+
+now go to cmd and type java -version if it displays like this
+C:\Users\admin>java -version
+java version "1.8.0_291"
+Java(TM) SE Runtime Environment (build 1.8.0_291-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.291-b10, mixed mode)
+
+java is installed correctly
+
+
+HOW TO INSTALL MAVEN IN SYSTEM
+
+go to google and type maven download 
+
+u will find this link
+Maven – Download Apache Maven  if u click on this it rediret to this lick 
+(https://maven.apache.org/download.cgi)
+
+if u scroll down u will find tar.gz files and zip files if u are using window systenm use zip files
+
+in my case i have taken this ( Binary zip archive	apache-maven-3.8.1-bin.zip) click on that zip file link it will download
+
+now cut the mavan from downloads folder place it some were in ur drives in my case i created on folder and pasted there 
+
+now extract the maven in that folder just click on that extracted file u will find sone bina, config, boot..etc all files
+
+like java we need not install maven we just need to add environment variables . now select the path of maven (D:\mni\apache-maven-3.8.1)
+
+go environment variables click on advanced and down select env variables  u will find  
+
+USER variables in this select new option u will get
+
+VARIABLE NAME:  M2_HOME
+
+VARIABLE VALUE: D:\mni\apache-maven-3.8.1   ( PASTE THE MAVEN PATH HERE)
+
+
+
+SYStem variables
+Here select path and click on edit there also u will find new option
+
+paste the maven path (D:\mni\apache-maven-3.8.1\bin)  like this and now go to cmd and type mvn -version if u get output like  this
+
+C:\Users\admin>mvn -version
+Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)
+Maven home: D:\mni\apache-maven-3.8.1\bin\..
+Java version: 1.8.0_291, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk1.8.0_291\jre
+Default locale: en_IN, platform encoding: Cp1252
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+maven is installed
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+How to install java and mavaen in linux
+
+
+launch and red hat instance from aws console
+
+
+try to install git 
+
+yum install git -y
+
+now install java
+
+yum install java -y
+
+for linux= apt install default-java
+
+it will defaultly install jdk 1.8
+
+now install maven in linux
+ go to maven downloads( https://maven.apache.org/download.cgi) check tar.gz file
+Binary tar.gz archive	apache-maven-3.8.4-bin.tar.gz
+
+just right click on tar.gz file u will find copy link address copy that and now go to linux operating system of what u have installed redhat or ubuntu
+
+login as root 
+
+cd /opt
+mkdir maven
+cd maven
+
+yum install wget -y  
+
+wget -c https://apachemirror.wuchna.com/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+maven file will be downloaded under maven directorty
+
+tar -xvf  apache-maven-3.8.4-bin.tar.gz
+
+it will extract the file
+
+do same steps what i'm giving here
+ 
+vi  /etc/profile.d/maven.sh  ( it will open vi editor)
+
+once u login to editot click on (I) on ur keyboard it will come to insert mode
+paste the line what i'm giving
+    
+( here in these lines theere is space afet export and after = there is no space so bette check file before u nsave)
+export M2_HOME=/opt/maven/apache-maven-3.8.4  
+export PATH=${M2_HOME}/bin:${PATH}
+now save these lines .. press esc symbol on ur keyboard and :wq! give enter
+now execute this line
+
+source /etc/profile.d/maven.sh
+
+now check maven version ( mvn --version) 
+
+================================================
+Deploy to container
+
+
+
+
+ 

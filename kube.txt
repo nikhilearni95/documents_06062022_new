@@ -1,0 +1,200 @@
+ kubernities
+what is kuberenets?
+
+it is container management tool
+
+high availability: ex( two sim cards)
+
+imagine u have one server and  in that one app is running that server is publicy accessed and if suddenly that server is stopped end users can't access that server
+
+in that case if u have two servers if server is stopped with in fraction of secnds req will go from server 2 this is called two node cluster
+
+imagine if server 1is not crashed or stopped what we configured in server2 is waste right if req goes from server1 what is use of server2?
+
+in that case u have 2 servers sevr1 running appA and server2 is running appB both are running  diff apps
+
+in server1 appA backup will be stored in server2 and the same way servr2 appB backup will be stored in server1 so if in case server1 fails req will automaticall goes from server2 becoz backup is there
+
+same server will server two applications APP A and B
+
+in kubernets if u have one cotainer and one app is running that if suddnly that container gets stopped this kubernetts will automatically spins up othet container
+
+that is y thsis kubeenets is called as container management tool
+
+where as docker is called as container tool
+
+we will kube mster and n nof nodes
+
+so in kube master we have install both docker and kubernetes and in the sameway nodes also we  have install docker and kubernets s/w
+
+so how could you find this is master and this is node?
+
+we will initialize master in one server so that we wil come to know it is master
+
+mastr can manage the nodes
+node is worker machine in k8s it might me either virtual or pyhsical machine depending on cluster
+ 
+each node contains no od pods
+each pod conatais the no of contianers (pod is grp of contaners)
+
+here we have a question with out kubernets can't we have any alternate ?
+
+yes we have docker swarm
+
+differnce between docker-swarm and kubemets
+
+ds doesn't have gui mode were as k8s have gui mode
+ds is installation and config is easy were as k8s is not much easy
+ds doesn't provdide much secuurity like k8s
+ds will spin containers fast ( it might or not) but k8s will compulsory spin containers
+
+Installation k8s
+
+
+how do we create pods in k8?
+
+kubectl run pod1 --image=apach2/nginx (in my case pod1 is my container name)
+
+kubectl get pods ( if status is 1/1 it is running 0/1 means stopped)
+
+now go and check in ur node sever is this ngix is cretaed or not bcoz as i told earlier k8s is cotianer mngmt tool
+
+now check in node server with comand ( docker ps) u will find nginx is installed
+
+how to delete pods in k8s?
+
+kubectl delete pod pod2 ( in my case pod2 is my name)
+
+if we delete pods in master it will be automatically deletes in node servers also
+
+go to node 1 and and stop the container using this command ( docker stop <contid>)
+
+as i said k8s is container mgmt tool now if u see d( docker ps) it will automaticall new container in that place
+
+now check kubectl get pods  ( u will find retsrqts)
+if u delette also cotainer in node 1 it will automaticaly create
+
+if we want we can pul any image in master and check in node1
+ex: kubectl run pod1 --image=tutum/hello-world
+now go and chevk ( docker images) in node1 u will find images crreated 
+
+kubectl get pods -o wide ( this cmd displays full info about creatd pods)
+
+kubectl describe pods pod1 ( we will get individual pod information)
+
+how to create yaml file in k8s?
+ first create onfile extension shld be .yml only ( vi sai.yml)
+apiVersion: v1  ( version is ur chioce)
+kind: pod        ( what u r creating in my case i'm creating pod)
+metadata:
+  name:pod5
+spec:   ( specifications)
+  containers:
+  - name: container -1
+    image: nginx:latest
+    ports:
+    - containerport: 8080
+...........................................
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+---------------------------------------------------------------
+kubectl create-f pod1.yml ( this is cmnd for executmg ymlfile)
+kubectl apply -f pod1.yml ( we can use this cmnd also for running yml script)
+
+kubectl get pods -n kube-system  ( this cmnd will show full details aboout default name spaces)
+
+kubectl describe node <nodename> ( this will show full deatils of tht node) ex: kubectl describe node k8s-node1
+
+
+kubectl get namespaces(it will show default namespaces)
+how to create or own name spaces?
+
+kubectl create ns my-ns1 ( in my case my-ns1 is my namespace)
+
+now go to any yml script under metadata we will have name and under that name provide ur namespace name and do some changes and run that yml
+for ex: 
+metadata:
+  name: nginx-pod3
+  namespace: my-ns1
+
+
+now check ypur pods created or not (  kubectl get  pods) i hope u wont get ur pod informtion thre
+
+kubectl get pods -n my-ns1  (use this cmnd bcoz u created in ur name spce that  pod not in default name space)
+
+kubectl describe pod <pod-name> -n my-ns1 ( it will show full info abt ur pod)
+
+ kubectl delete pod nginx-pod3-8658bbfb69-rpbxf -n my-ns1 ( to delet ur pod from that created ns)
+kubectl get namespaces,pods ( it will show both namespaces and pods info)
+kubectl delete namespaces my-ns1 ( it will delete ur created namespace , k8s won't delete default namespaces)
+
+
+
+how to create replica set?
+
+ReplicaSets:
+==========
+ReplicaSets are a higher-level API that gives you the ability to easily run multiple instances of a given pod. 
+You tell the ReplicaSets the number of pods that you want it to run and it will ensure that the exact number of pods are actually running.
+
+replicaset.yaml
+------------------
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kuard
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kuard
+  template:
+    metadata:
+      labels:
+        app: kuard
+    spec:
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:1
+
+how to delete replica set?
+kubectl get replicaset ( it will show all replica seets)
+
+kubectl delete replicaset <repliasetname>
+
+how to increase no of pods in replicas with out deleting any replica set?
+just go to yml file of that pod and increase  no of pods in place of replicas u want and use this cmnd
+
+kubectl apply create -f pod6.yml
+
+
+for loadbalancer
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomm-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector: 
+    app: name give in label in deployment.yml

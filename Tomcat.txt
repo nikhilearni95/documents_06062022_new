@@ -1,0 +1,87 @@
+Tomcat
+
+How to install java and tomcat in linux
+
+
+launch and red hat instance from aws console
+
+
+try to install git 
+
+yum install git -y
+
+now install java
+
+yum install java -y
+it will defaultly install jdk 1.8
+
+now install maven in linux
+ go to tomcat downloads( https://tomcat.apache.org/download-90.cgi) check tar.gz file
+Binary tar.gz archive	apache-tomcat-9.0.56.tar.gz
+
+just right click on tar.gz file u will find copy link address copy that and now go to linux operating system of what u have installed redhat or ubuntu
+
+login as root 
+
+cd /opt
+mkdir tomcat
+cd tomcat
+
+yum install wget -y
+
+wget -c https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz
+maven file will be downloaded under maven directorty
+
+tar -xvf  apache-tomcat-9.0.56.tar.gz
+
+it will extract the file
+
+now check tomcat version goto the bin path where you saved apache /opt/tomcat/apache-tomcat-9.0.56/bin and enter ( ./version.sh). same as startup.sh & shutdown.sh.
+
+
+Using CATALINA_BASE:   /opt/tomcat/apache-tomcat-9.0.56
+Using CATALINA_HOME:   /opt/tomcat/apache-tomcat-9.0.56
+Using CATALINA_TMPDIR: /opt/tomcat/apache-tomcat-9.0.56/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/tomcat/apache-tomcat-9.0.56/bin/bootstrap.jar:/opt/tomcat/apache-tomcat-9.0.56/bin/tomcat-juli.jar
+Using CATALINA_OPTS:
+Server version: Apache Tomcat/9.0.56
+Server built:   Dec 2 2021 14:30:07 UTC
+Server number:  9.0.56.0
+OS Name:        Linux
+OS Version:     4.18.0-305.el8.x86_64
+Architecture:   amd64
+JVM Version:    1.8.0_312-b07
+JVM Vendor:     Red Hat, Inc.
+
+Tomcat start & stop
+ln -s /opt/tomcat/apache-tomcat-9.0.56/bin/startup.sh /usr/local/sbin/tomcatstart
+ln -s /opt/tomcat/apache-tomcat-9.0.56/bin/shutdown.sh /usr/local/sbin/tomcatstop
+ln -s /opt/tomcat/apache-tomcat-9.0.56/bin/version.sh /usr/local/sbin/tomcatversion
+
+for user details in the path /opt/tomcat/apache-tomcat-9.0.56/conf use (vi tomcat-users.xml) and edit deatils with below userdetails
+
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>
+  <role rolename="manager-gui"/>
+  <user username="tomcat" password="Tomcat" roles="manager-gui,manager-script, manager-status"/>
+</tomcat-users>
+
+for running the tomcat you have to change the context.xml for that you have to goto that path and edit context path is /opt/tomcat/apache-tomcat-9.0.56/webapps/host-manager/META-INF
+ and type (vi context.xml) for same as /opt/tomcat/apache-tomcat-9.0.56/webapps/manager/META-INF and type (vi context.xml).
+
+
+service status firewalld  
+
+service firewalld stop
+
+
+
+
+================================================
+Deploy to container
+
+
+
+
+ 

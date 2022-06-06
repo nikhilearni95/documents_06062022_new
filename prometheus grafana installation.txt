@@ -1,0 +1,5 @@
+PROMETHUES GRAFANA INSTALLATION
+
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbXgtUzNZUGY1RzZzSUpJTWdvaUtGWWpyMFVwZ3xBQ3Jtc0tuQkNGSHVHVmxyckRLZTFSMnRrdE1BN3BaYzhQQUVQeH
+l4LUkyYm9vbUJhSjlyQ2FkT2tkeFppZ0FsU1FWRjdtLVJhUEphUkU4R3V1dDFzQlpJaHoxbUQzeWJSU1VQcWtNb3NydGZfMC1aVmRHUUFyVQ&q=https%3A%2F%2Fdevops4solutions.com%2Fmonitoring-using-
+prometheus-and-grafana-on-aws-ec2%2F

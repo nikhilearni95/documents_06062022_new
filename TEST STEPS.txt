@@ -1,0 +1,44 @@
+Install DOCKER JENKINS MAVEN GIT TOMCAT
+
+PLUGINS: DOCKER PLUGINS,DEPLOY TO CONTAINER,SUGGESTED PLUGINS
+
+USERMOD FOR JENKINS AND DOCKER
+
+USER FOR TOMCAT
+
+START JENKINS AND TOMCAT
+
+1.validate
+
+2.compile
+
+3.test
+
+4.package
+
+5./var/lib/jenkins/workspace/deploy/target/
+
+  paste in ~/apache/webapps/
+
+6.create Dockerfile
+
+7.docker build /path/ -t nikhilearni95/httpbin
+
+
+copy paste index.html file from flaggers and paste it in var/www/html/
+
+add src folder 
+
+remove java sub folder
+
+add index.jsp file to /src/main/webapp/
+
+edit web.xml file in following path src/main/webapp/WEB-INF/
+
+change names in pom.xml file
+
+52.91.91.164-jenkins server
+
+3.80.105.218-tomcat server
+
+

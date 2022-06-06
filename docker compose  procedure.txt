@@ -1,0 +1,37 @@
+create a docker compaose file with name= docker-compose.yml (or) docker-compose-yaml
+
+vi docker-compose.yml/yaml
+
+services:
+  web1:
+    image: apache
+    ports:
+      - "9090:80"
+  web2:
+    image: nginx
+    ports:
+      - "9091:80"
+  myntra:
+    image: nikhilearni95/myimageapache
+    ports:
+      - "9093:80"
+
+save above file :wq!
+
+check docker-compose ps
+
+no error-super---
+
+now run our docker-compose file
+
+docker-compose up -d
+
+container with specific images started....
+
+hurray
+
+if u want to stop all
+
+docker-compose down
+
+

@@ -1,0 +1,66 @@
+MAVEN INSTALLATON LINUX
+
+sudo su -
+
+apt update
+
+apt install default-jdk
+
+java -version
+
+check
+
+cd /opt
+
+mkdir maven
+
+cd maven
+
+go to maven downloads( https://maven.apache.org/download.cgi) check tar.gz file
+Binary tar.gz archive	apache-maven-3.8.4-bin.tar.gz
+
+just right click on tar.gz file u will find copy link address copy that and now go to linux operating system of what u have installed redhat or ubuntu
+
+wget copied link
+
+tar -xvf  apache-maven-3.8.4-bin.tar.gz
+
+vi  /etc/profile.d/maven.sh
+
+insert this data
+
+export M2_HOME=/opt/maven/apache-maven-3.8.4  
+export PATH=${M2_HOME}/bin:${PATH}
+
+save
+
+source /etc/profile.d/maven.sh
+
+mvn -version
+
+check
+
+cd /root
+
+mvn archetype:generate
+
+give values and details
+
+success
+
+cd "artifact id directory created"
+
+mvn validate
+
+mvn compile
+
+mvn test
+
+mvn package
+
+all success
+
+cd /target
+
+we see .war file
+

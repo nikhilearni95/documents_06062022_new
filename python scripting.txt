@@ -1,0 +1,14 @@
+""for python scripting""
+
+
+
+1.https://www.ipswitch.com/blog/how-to-create-an-ec2-instance-with-python
+
+2.https://stackabuse.com/automating-aws-ec2-management-with-python-and-boto3/
+
+
+3.https://www.101daysofdevops.com/courses/101-days-of-devops/lessons/python-os-module/
+
+4.https://www.youtube.com/watch?v=WuHPURf1Upw&list=PL2qzCKTbjutKOuX-mmsRvfhEHFdJldqHw
+
+

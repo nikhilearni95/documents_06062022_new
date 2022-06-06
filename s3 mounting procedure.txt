@@ -1,0 +1,49 @@
+
+YOUTUBE VIDEO URL:https://www.youtube.com/watch?v=Qd85rhuFvqs
+
+
+sudo apt-get update
+
+sudo apt-get install awscli -y 
+
+sudo apt-get install s3fs -y
+
+mkdir bucket
+
+cd bucket
+
+touch 1.txt 2.txt 3.txt
+
+aws s3 sync /home/ubuntu/bucket s3://bucketname
+
+now files crested in bucket directory we can see in aws s3 bucket 
+
+if u create a new file now it wont update in aws s3 bucket 
+
+we need to use sync command again to do so
+
+to avoid this we will mount permanently
+
+now create .passwd-s3fs file
+
+content in that file
+
+echo access id:secret access id > ${HOME}/.passwd-s3fs
+
+1.sudo s3fs bucketname bucket  -o passwd_file=$HOME/.passwd-s3fs,nonempty,rw,allow_other,mp_umask=002,uid=1000,gid=1000 -o url=http://s3.ca-central-1.amazonaws.com,endpoint=ca-central-1,use_path_request_style
+
+change region names,bucket name and directory name bucket if required
+
+2.mount|grep bucket
+
+cd /etc
+
+sudo sp fstab fstab_bkp
+
+sudo vi fstab 
+
+add below line in the file and save it,it should link mount even if u reboot or restart instance
+
+bucket name path of bucket directory fuse.s3fs _netdev,allow_other 0 0
+
+if link not happened,then use 1. and 2. u will again get the link if broken

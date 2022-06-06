@@ -1,0 +1,16 @@
+*if installation strucks at timezone values script*
+
+ENV TZ=Asia/Kolkata
+
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt install -y tzdata
+
+*if installation strucks [Y/N] *
+
+add -y in the command line.
+
+
+
+

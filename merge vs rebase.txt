@@ -1,0 +1,24 @@
+GIT MERGE / REBASE:
+It's simple, with rebase you say to use another branch as the new base for your work.
+If you have for example a branch master and you create a branch to implement a new
+feature, say you name it cool-feature, of course the master branch is the base for your new
+feature.
+Now at a certain point you want to add the new feature you implemented in
+the master branch. You could just switch to master and merge the cool-feature branch:
+$git checkout master
+$git merge cool-feature
+but this way a new dummy commit is added, if you want to avoid spaghetti-history you
+can rebase:
+$git checkout cool-feature
+$git rebase master
+and then merge it in master:
+$git checkout master
+$git merge cool-feature
+This time, since the topic branch has the same commits of master plus the commits with the
+new feature, the merge will be just a fast-forward
+
+git cherry-pick <commitid>
+
+
+for merge----same commit id---preserves history
+for rebase-----different commit id is created---rewrites history

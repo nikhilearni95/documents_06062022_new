@@ -1,0 +1,103 @@
+MAVEN:
+what is maven?
+it is an application build tool.help to buid java application
+
+what is application build tool?
+which will help to develop an application
+
+why maven neded?
+to build an java application
+
+eg:
+
+.java .....>.class
+source       target/executable
+what is compiler?
+it is s/w which will help to convert high level language to low level languag
+
+java file .....> .class file
+
+10java files ...> 10.class files
+
+.java ...> .class(bundle) ...>.jar(bundle) ...>war
+group of .class files is called .jar file (java archieve>
+
+group of .jar files is called .war file ( web archieve)
+.ear ...> enter prise web archieve 
+
+pre requisites for maven:
+
+java ....> yum -y install java-1.8.0-openjdk
+
+javac ...> yum -y install java-1.8.0-openjdk-devel
+
+maven uses pom.xml(project object modules) to define the project and its depencies.it helps to buid the structure of the project.
+it also associate the files and help to build the application
+
+how to download maven and install it?
+go to this site (https://maven.apache.org/download.cgi)
+
+copy link address of latest maven bin.tar.gz file in our case this is new version of maven
+apache-maven-3.6.3-bin.tar.gz 
+
+using wget comand we have to dowload maven
+
+wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+
+now gunzip the tar
+gunzip apache-maven-3.8.4-bin.tar.gz
+
+aptinstall maven    -for linux
+
+extract the tar
+ tar -xvf apache-maven-3.8.4-bin.tar.gz
+
+vi /etc/profile.d/maven.sh
+
+we have set env variables and mvn path
+export M2_HOME=/home/ec2-user/apache-maven-3.8.4
+export PATH=$PATH:$M2_HOME/bin
+
+source /etc/profile.d/maven.sh
+
+in my case maven is extracted in /home/ec2-user
+nowif u chk mvn -version u will c versionof mvn
+
+in home directory u will find (.bash_profile) this file copy those export commands to in this bash profile
+and save it .so that if u exit from this server and again login u need not nter those export paths comnds
+===============================================================
+
+maven cmnds:
+
+mvn archetype:generate ( it will give project structure)
+mvn validate  (it will validate project structure)
+mvn compile ( it will convrt .java files in to .class files)
+mvn test ( it will test .class files)
+mvn package (it helps to create .jar , .war, .ear)
+mvn install ( it will install package locally)
+mvn deploy ( it install package remotely)
+
+createa a .jar file using 
+1 mvn archetype:generate
+ project num: ( in my case it is 1199)
+group id: techproject
+artifact id: simplejar ( inmy case u can keep what ever name u wamnt)
+package id: same as group id
+version: 1.0snapshot
+now list u will find simpejar directory in that we will have projetc structure
+if u see in that simple jar dir u will find pom.xml file ( while maintains entire structure of project)
+
+2 mvn validate ( to use this comand u shld be in project structure only (simplejar)
+3 mvn compile
+4 mvn test
+5 mvn package
+to see content in .jar file after package comand
+jar -tvf target/simplejar-1.0..snap
+
+java -cp target/simplejar-1.0-snap.jar-techi.app
+
+if u change any thing in code again u have  to validate compile test...all these
+
+so to avoid these we will use jenkins
+
+

@@ -1,0 +1,115 @@
+INSTALL SONARQUBE-6.7.7 ON UBUNTU
+
+sudo apt-get update
+
+sudo apt-get install -y openjdk-8-jdk
+
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.7.zip
+                                                                            
+ls
+
+sonarqube-6.7.7.zip
+
+unzip sonarqube-6.7.7.zip 
+
+ls
+
+sonarqube-6.7.7  sonarqube-6.7.7.zip
+
+~/sonarqube-6.7.7/bin/linux-x86-64/sonar.sh start
+
+~/sonarqube-6.7.7/bin/linux-x86-64/sonar.sh status
+
+ip address:9000 we can get site
+
+
+INSTALL NEXUS-2.14.18-01 ON UBUNTU (troubleshoot)
+
+sudo apt-get update
+
+sudo apt-get install -y openjdk-8-jdk
+
+wget https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.29.2-02-unix.tar.gz
+
+ls
+
+nexus-3.29.2-02-unix.tar.gz
+
+tar xvf nexus-3.29.2-02-unix.tar.gz
+
+ls
+
+nexus-3.22.0-02
+
+~/nexus-3.22.0-02/bin/nexus start
+
+~/nexus-3.22.0-02/bin/nexus status
+
+ip:8081/nexus we can get site
+
+NEW VERSION:sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+
+INSTALL TOMCAT
+
+sudo apt-get update
+
+sudo apt-get install -y openjdk-8-jdk
+
+wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
+
+ls
+
+apache-tomcat-7.0.94.tar.gz
+
+tar xvf apache-tomcat-7.0.94.tar.gz.tar.gz
+
+vi ~/apache-tomcat-7.0.94/conf/tomcat-users.xml
+
+add below text under
+<tomcat servers>
+<role rolename="manager-gui"/>
+  <user username="maven-deploy-war" password="warfile" roles="manager-gui,manager-script, manager-status"/>
+
+~/apache-tomcat-7.0.94/bin/startup.sh-for start
+
+~/apache-tomcat-7.0.94/bin/shutdown.sh-for shutdown
+
+modify ports
+
+vi ~/apache-tomcat-7.0.94/conf/servers.xml
+
+default-8080
+
+cd ~/apache-tomcat-7.0.94/webapps/
+
+wget --user admin  --password admin123 artifactory path
+
+file will be deployed from nexus server to tomcat
+
+done
+
+sudo visudo
+
+try this commandline
+
+sudo usermod -a -G jenkins
+
+under root line
+add following text
+
+jenkins ALL=(ALL:ALL) ALL
+
+IN EXECUTE SHELL BLOCK
+
+wget --user admin  --password admin123 artifactory path
+sudo cp -S warfile ~/apache-tomcat-7.0.94/webapps/
+
+
+
+
+
+
+
+
+ 

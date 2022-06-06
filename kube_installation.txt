@@ -1,0 +1,124 @@
+sudo apt update
+    3  sudo apt -y upgrade && sudo systemctl reboot
+    4  exit
+    5  mkdir -p /etc/containerd
+    6  containerd config default>/etc/containerd/config.toml
+    7  exit
+    8  sudo apt -y install curl apt-transport-https
+    9  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+   10  echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   11  sudo apt update
+   12  sudo apt -y install vim git curl wget kubelet kubeadm kubectl
+   13  sudo apt-mark hold kubelet kubeadm kubectl
+   14  kubectl version --client && kubeadm version
+   15  clear
+   16  sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+   17  sudo swapoff -a
+   18  sudo modprobe overlay
+   19  sudo modprobe br_netfilter
+   20  sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+       net.bridge.bridge-nf-call-ip6tables = 1
+       net.bridge.bridge-nf-call-iptables = 1
+       net.ipv4.ip_forward = 1
+       EOF
+   25  sudo sysctl --system
+   26  sudo apt update
+   27  sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
+   28  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   29  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+   30  sudo apt update
+   31  sudo apt install -y containerd.io docker-ce docker-ce-cli
+   32  sudo mkdir -p /etc/systemd/system/docker.service.d
+   33  sudo tee /etc/docker/daemon.json <<EOF
+       {
+         "exec-opts": ["native.cgroupdriver=systemd"],
+         "log-driver": "json-file",
+         "log-opts": {
+           "max-size": "100m"
+         },
+         "storage-driver": "overlay2"
+       }
+       EOF
+   43  sudo systemctl daemon-reload
+   44  sudo systemctl restart docker
+   45  sudo systemctl enable docker
+   46  sudo systemctl daemon-reload
+   47  sudo systemctl restart docker
+   48  sudo systemctl enable docker
+   49  clear
+   50  sudo modprobe overlay
+   51  sudo modprobe br_netfilter
+   52  sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+       net.bridge.bridge-nf-call-ip6tables = 1
+       net.bridge.bridge-nf-call-iptables = 1
+       net.ipv4.ip_forward = 1
+       EOF
+   57  sudo sysctl --system
+   58  . /etc/os-release
+   59  vi . /etc/os-release
+   60  sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+   61  wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O- | sudo apt-key add -
+   62  sudo apt update
+   63  sudo apt install cri-o-1.17
+   64  sudo systemctl daemon-reload
+   65  sudo systemctl restart crio
+   66  sudo systemctl enable crio
+   67  sudo systemctl status crio
+   
+   71  sudo tee /etc/modules-load.d/containerd.conf <<EOF
+overlay
+br_netfilter
+EOF
+   75  sudo modprobe overlay
+   76  sudo modprobe br_netfilter
+   77  sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+   82  sudo sysctl --system
+   83  sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
+   84  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   85  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+   86  sudo apt update
+   87  sudo apt install -y containerd.io
+   89  mkdir -p /etc/containerd
+   90  containerd config default>/etc/containerd/config.toml
+   91  sudo su -
+   92  sudo systemctl restart containerd
+   93  sudo systemctl enable containerd
+   94  systemctl status  containerd
+   95  lsmod | grep br_netfilter
+   96  sudo systemctl enable kubelet
+   97  clear
+   98  sudo kubeadm config images pull
+  we have taken back up of master instance and created other instnace and named it as node .
+  99. now login to master instance and execute command 
+    # kubeadm init 
+once above command is executed u will get these commands 
+ #mkdir -p $HOME/.kube
+#sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+#sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Execute the above 3 in master as normal user
+
+just copy and paste join command seperately in note pad  ( if u forget to copy use this command in master it will again print the token join command)
+ # kubeadm token create --print-join-command
+
+Now install n/w's command in master
+ # kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+Now execute this command as normal user
+#  kubectl get pods --all-namespaces
+onece all pods cominb to ruuning ur master instance will be ready
+# kubectl get nodes
+# kubeadm token create --print--join--command
+after entering the above command u will get join command
+ Now login to node machine and paste join command here as root user 
+now go to master  machine and check whether node machine is in running status or not
+ # kubectl get nodes
+# kubeadm token create --print--join--command
+
+kubeadm join 172.31.17.1:6443 --token trmu0p.r6byt6mv0eftwlrh \
+        --discovery-token-ca-cert-hash sha256:f7803c4cb6f25de89a0ba6e73d23eefda6a54aaa22a3d7fb6b925a2f4f78ff6b
+
+

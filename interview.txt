@@ -1,0 +1,19 @@
+docker images
+
+docker ps
+
+
+docker ps -a
+
+
+docker login
+
+docker pull 
+
+docker run -it -p 0000:0000 --name xyz imagename
+
+dockerfile
+
+
+docker build . -t imagename
+
