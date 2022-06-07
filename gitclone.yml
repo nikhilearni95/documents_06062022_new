@@ -1,0 +1,9 @@
+---
+ - hosts: production
+   tasks:
+   - name: Clone a github repository
+     git:
+       repo: https://github.com/nikhilearni95/projectinfra-script.git
+       dest: /root/clonerepo/
+       clone: yes
+       update: yes
