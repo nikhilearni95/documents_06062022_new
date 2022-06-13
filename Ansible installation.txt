@@ -8,6 +8,13 @@ create 1 master and n number of node instances in aws or any cloud platform
 
 NOTE SECURITY GROUPS SSH,HTTP,HTTPS ALL TRAFFIC OR IP'S
 
+FOR CENTOS
+
+sudo yum-config-manager --enable epel
+
+sudo yum install ansible
+
+
 MASTER WORK
 
 $ sudo apt-get update
@@ -36,7 +43,7 @@ to resolve this,first we need create key
 Master
 
 ssh-keygen
-enter
+entercd .ss	
 enter
 enter
 now follow below steps
@@ -94,4 +101,38 @@ ansible -m ping node 3
 failure 
 unable to find
 since we didnt give in the hosts list
+
+
+ansible-playbook playbook.yml-to run the playbook
+
+
+---
+- hosts: UAT
+  tasks:
+  - name: Creating an empty file
+    file:
+      path: /root/nikhil/deploy.txt
+      state: touch
+
+************URL for ssh between users************
+
+master user ssh-keygen
+
+copy id_rsa.pub key
+
+node user 
+
+copy .ssh/ folder from root
+
+configure authorised keys file with public key from master
+
+follow the below url steps in NODE ansible.cfg file
+
+https://phoenixnap.com/kb/ssh-permission-denied-publickey
+
+create ssh node@url
+
+connection creates.
+
+
 

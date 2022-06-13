@@ -1,0 +1,11 @@
+****************************Run ansible playbook using jenkins***************************
+
+keep ubuntu/centos in place of ec2-user as shown in video
+
+private-key---pem file text of the host server.
+
+https://www.youtube.com/watch?v=PRpEbFZi7nI
+
+use the same method to run playbook it works.
+
+keep ubuntu/centos in place of ec2-user

@@ -1,0 +1,17 @@
+adduser username
+
+passwd username <enter>
+
+password:
+
+new password:
+
+gpasswd -a username wheel----------to give root like permissions to username
+
+sudo cp -R /path/to/files/you/want/copied/ /copy/to/this/path/
+
+removed for password authentication -change to yes
+
+# removed for permit root login - changed to no
+
+# removed for public key authentication

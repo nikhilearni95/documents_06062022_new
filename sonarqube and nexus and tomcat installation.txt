@@ -1,26 +1,37 @@
 INSTALL SONARQUBE-6.7.7 ON UBUNTU
 
+youtube video-https://www.youtube.com/watch?v=NJXvQ8lWPKE
+
 sudo apt-get update
 
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-8-jdk(what ever is required)
+
+google sonarqube download
+
+copy link address for community/free version
+
+sudo wget link address
 
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.7.zip
-                                                                            
-ls
-
-sonarqube-6.7.7.zip
-
+                                                                         
 unzip sonarqube-6.7.7.zip 
 
-ls
+cd ~/sonarqube-6.7.7/bin/linux-x86-64/
 
-sonarqube-6.7.7  sonarqube-6.7.7.zip
+./sonar.sh
+
+./sonar.sh console(we get status of all the work done to start sonar,at last comment
+regarding that)
+
+cd ~/sonarqube-6.7.7/conf/sonar.settings------------u can change port,context, etc.,
 
 ~/sonarqube-6.7.7/bin/linux-x86-64/sonar.sh start
 
 ~/sonarqube-6.7.7/bin/linux-x86-64/sonar.sh status
 
 ip address:9000 we can get site
+
+token:9246b5132e226aff729dcfc740cde1837ecbb590
 
 
 INSTALL NEXUS-2.14.18-01 ON UBUNTU (troubleshoot)

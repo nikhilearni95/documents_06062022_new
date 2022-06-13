@@ -1,0 +1,17 @@
+INSTALL WILDFLY APPLICATION SERVER IN CENTOS 7
+
+https://www.centlinux.com/2019/05/install-wildfly-jboss-application-server-centos-7.html
+
+***************while configuring java change the versions accordingly*****************
+
+install firewalld while using firewall -- permanent comamnd for giving ports...
+
+for running ansible playbook to copy the jar to deployment folder change the ownership with chown command to given private key user
+
+then it will be accessable
+
+
+
+java-1.8.0-openjdk.x86_64 1:1.8.0.332.b09-1.el7_9
+
+https://github.com/aeimer/java-example-helloworld-war
