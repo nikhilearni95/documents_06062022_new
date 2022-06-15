@@ -1,0 +1,6 @@
+Bitbucket token-yevkw1njo68ikpM63w5a818C
+
+https://bitbucket.org/account/settings/app-passwords/- TO SET APP PASSWORD
+
+6JyqjKCex327GDY4ZNPv-app password to push files to bitbucket repository
+
