@@ -31,11 +31,13 @@ content in that file
 
 echo access id:secret access id > ${HOME}/.passwd-s3fs
 
+chmod 600 ${HOME}/.passwd-s3fs
+
 1.sudo s3fs bucketname bucket  -o passwd_file=$HOME/.passwd-s3fs,nonempty,rw,allow_other,mp_umask=002,uid=1000,gid=1000 -o url=http://s3.ca-central-1.amazonaws.com,endpoint=ca-central-1,use_path_request_style
 
 change region names,bucket name and directory name bucket if required
 
-2.mount|grep bucket
+2.mount|grep bucket  ---> to check whether mount is done or not from above step 
 
 cd /etc
 
