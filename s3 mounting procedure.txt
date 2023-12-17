@@ -1,6 +1,7 @@
 
 YOUTUBE VIDEO URL:https://www.youtube.com/watch?v=Qd85rhuFvqs
 
+use "aws configure" to add the credentials - (access-key and secret-access-key)
 
 sudo apt-get update
 
